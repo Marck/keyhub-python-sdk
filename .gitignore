@@ -10,6 +10,7 @@
 
 # Test files
 test.py
+*backup*
 
 # Credential files
 creds.json
