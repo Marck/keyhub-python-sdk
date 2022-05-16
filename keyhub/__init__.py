@@ -2,6 +2,7 @@ from keyhub.authentication import client_auth, account_auth
 from keyhub.account import account
 from keyhub.vault import vault
 from keyhub.profile import profile
+from keyhub.client import client
 
 __all__ = (
     'client_auth',
@@ -9,4 +10,5 @@ __all__ = (
     'account',
     'vault',
     'profile',
+    'client',
 )

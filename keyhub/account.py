@@ -30,6 +30,13 @@ class KeyHubAccount(object):
             raise Exception('one of the following variables must be defined: account_uuid or account_username')
         return Account(response.json()['items'][0])
 
+    def get_accounts_in_state(self, active):
+        response = self._session.get(self._uri + "/keyhub/rest/v1/account?active=" + str(active))
+        records = []
+        for record in response.json()['items']:
+            records.append(Account(record))
+        return records
+
+
 def account(authentication):
     return KeyHubAccount(authentication=authentication)
-

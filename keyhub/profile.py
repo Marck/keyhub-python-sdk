@@ -1,4 +1,6 @@
-class Account(object):
+import requests
+
+class Profile(object):
     def __init__(self, json):
         self.href = json['links'][0]['href']
         self.validity = json['validity']
@@ -15,34 +17,22 @@ class Account(object):
         self.directoryPasswordChangeRequired = json['directoryPasswordChangeRequired']
         self.licenseRole = json['licenseRole']
 
-class Group(object):
-    def __init__(self, json):
-        self.uuid = json['uuid']
-        self.name = json['name']
-        self.href = json['links'][0]['href']
-
-class VaultRecord(object):
-    def __init__(self, json):
-        self.uuid = json['uuid']
-        self.name = json['name']
-        self.color = json['color'] if 'color' in json else ''
-        self.username = json['username'] if 'username' in json else ''
-        self.url = json['url'] if 'url' in json else ''
-        self.password = json['additionalObjects']['secret']['password'] if 'secret' in json['additionalObjects'] and 'password' in json['additionalObjects']['secret'] else ''
-        self.totp = json['additionalObjects']['secret']['totp'] if 'secret' in json['additionalObjects'] and 'totp' in json['additionalObjects']['secret'] else ''
-        self.filename = json['filename'] if 'filename' in json else ''
-        self.file = json['additionalObjects']['secret']['file'] if 'secret' in json['additionalObjects'] and 'file' in json['additionalObjects']['secret'] else ''
-
 
 class KeyHubProfile(object):
     def __init__(self, authentication):
-        self._session = authentication.session
+        self._headers = authentication.headers
         self._uri = authentication.uri
+    
+    def get_profile_info(self):
+        # response = self._session.get(self._uri + "/keyhub/rest/v1/account/me") 
+        response = requests.get(self._uri + "/keyhub/rest/v1/account/me", headers=self._headers, verify=True)
+        return response.text
 
-  
-    def get_temporary_password(self):
-        return print('here comes temp pw functionality')
-        # return Account(response.json()['items'][0])
+    def get_rotating_password(self):
+        # /keyhub/rest/v1/account/provisioning/tokenpwd
+        response = requests.get(self._uri + "/keyhub/rest/v1/account/provisioning/tokenpwd", headers=self._headers, verify=True)
+        # return Profile(response.json())
+        return response.text
 
 
 def profile(authentication):
