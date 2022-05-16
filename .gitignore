@@ -9,8 +9,9 @@
 /*.egg
 
 # Test files
-test.py
+test*
 *backup*
+api-definition.json
 
 # Credential files
 creds.json

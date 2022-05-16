@@ -25,7 +25,7 @@ class KeyHubVault(object):
     def get_group(self, group_uuid):
         response = self._session.get(self._uri + "/keyhub/rest/v1/group?uuid=" + group_uuid)
         return Group(response.json()['items'][0])
-
+    
     def get_vault_records(self, group_uuid):
         # TODO: support for client vault -> group_uuid=None
         group = self.get_group(group_uuid)
@@ -39,7 +39,20 @@ class KeyHubVault(object):
         group = self.get_group(group_uuid)
         response = self._session.get(group.href + "/vault/record/uuid/" + record_uuid + "?additional=secret") 
         return VaultRecord(response.json())
-
+        
+    # This doesn't work
+    # def post_personal_vault(self, account_uuid):
+        # /keyhub/rest/v1/account/{accountid}/vault/record
+        # payload = {'name': 'Python scripting test', 'username': 'test', 'password': 'test2'}
+        # payload = { 'content': { 'name': 'Python scripting test', 'username': 'test', 'password': 'test2' } }
+        # response = self._session.post(self._uri + "/keyhub/rest/v1/account/" + account_uuid + "/vault/record" + "?additional=secret", json=payload) 
+        # response = self._session.get(self._uri + "/keyhub/rest/v1/account?uuid=" + account_uuid + "/group")
+        # response = self._session.get(self._uri + "/keyhub/rest/v1/account?accountid=" + account_uuid + "/vault")
+        # response = self._session.get(self._uri + "/keyhub/rest/v1/account?accountid=" + account_uuid + "/vault/record?id=2133ff55-3d0f-4e83-aeb6-8593d3f0b442")
+        # response = self._session.get(self._uri + "/keyhub/rest/v1/account?active=false")
+        #  + "/vault/record" + "?additional=title" + "?id=2133ff55-3d0f-4e83-aeb6-8593d3f0b442"
+        # return VaultRecord(response.json())
+        # return response.json()
 
 def vault(authentication):
     return KeyHubVault(authentication=authentication)
