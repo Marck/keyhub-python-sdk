@@ -27,7 +27,7 @@ class KeyHubClientAuthentication(object):
         return response.json()
 
 class KeyHubAccountAuthentication(object):
-    def __init__(self, uri, client_id, client_secret):
+    def __init__(self, uri, client_id, client_secret, callback_uri):
         # https://keyhub-instance/login/code?usercode=CODE-HERE
         # "authorizationCode" : {
         #   "authorizationUrl" : "https://keyhub-instance/login/oauth2/authorize",
@@ -58,5 +58,5 @@ class KeyHubAccountAuthentication(object):
 def client_auth(uri, client_id, client_secret):
     return KeyHubClientAuthentication(uri=uri, client_id=client_id, client_secret=client_secret)
 
-def account_auth(uri, client_id, client_secret):
-    return KeyHubAccountAuthentication(uri=uri, client_id=client_id, client_secret=client_secret)
+def account_auth(uri, client_id, client_secret, callback_uri):
+    return KeyHubAccountAuthentication(uri=uri, client_id=client_id, client_secret=client_secret, callback_uri=callback_uri)

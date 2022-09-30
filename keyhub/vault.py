@@ -1,6 +1,7 @@
 class Group(object):
     def __init__(self, json):
         self.uuid = json['uuid']
+        self.id = json['links'][0]['id']
         self.name = json['name']
         self.href = json['links'][0]['href']
 
@@ -11,6 +12,7 @@ class VaultRecord(object):
         self.color = json['color'] if 'color' in json else ''
         self.username = json['username'] if 'username' in json else ''
         self.url = json['url'] if 'url' in json else ''
+        self.additionalObjects = json['additionalObjects']
         self.password = json['additionalObjects']['secret']['password'] if 'secret' in json['additionalObjects'] and 'password' in json['additionalObjects']['secret'] else ''
         self.totp = json['additionalObjects']['secret']['totp'] if 'secret' in json['additionalObjects'] and 'totp' in json['additionalObjects']['secret'] else ''
         self.filename = json['filename'] if 'filename' in json else ''
@@ -37,27 +39,13 @@ class KeyHubVault(object):
 
     def get_vault_record(self, group_uuid, record_uuid):
         group = self.get_group(group_uuid)
-        response = self._session.get(group.href + "/vault/record/uuid/" + record_uuid + "?additional=secret") 
+        response = self._session.get(group.href + "/vault/record/uuid/" + record_uuid + "?additional=secret&groupid=" + group.id) 
         return VaultRecord(response.json())
         
     def post_vault_record(self, group_uuid, payload):
         group = self.get_group(group_uuid)
         response = self._session.post(group.href + "/vault/record?additional=secret", json=payload)
-        return response
-
-    # This doesn't work
-    # def post_personal_vault(self, account_uuid):
-        # /keyhub/rest/v1/account/{accountid}/vault/record
-        # payload = {'name': 'Python scripting test', 'username': 'test', 'password': 'test2'}
-        # payload = { 'content': { 'name': 'Python scripting test', 'username': 'test', 'password': 'test2' } }
-        # response = self._session.post(self._uri + "/keyhub/rest/v1/account/" + account_uuid + "/vault/record" + "?additional=secret", json=payload) 
-        # response = self._session.get(self._uri + "/keyhub/rest/v1/account?uuid=" + account_uuid + "/group")
-        # response = self._session.get(self._uri + "/keyhub/rest/v1/account?accountid=" + account_uuid + "/vault")
-        # response = self._session.get(self._uri + "/keyhub/rest/v1/account?accountid=" + account_uuid + "/vault/record?id=2133ff55-3d0f-4e83-aeb6-8593d3f0b442")
-        # response = self._session.get(self._uri + "/keyhub/rest/v1/account?active=false")
-        #  + "/vault/record" + "?additional=title" + "?id=2133ff55-3d0f-4e83-aeb6-8593d3f0b442"
-        # return VaultRecord(response.json())
-        # return response.json()
+        return VaultRecord(response.json()['items'][0])
 
 def vault(authentication):
     return KeyHubVault(authentication=authentication)

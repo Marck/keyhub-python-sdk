@@ -17,10 +17,10 @@ from setuptools import setup
 
 setup(
     name='keyhub',
-    version='0.1.0',
+    version='0.2.0',
     description='Python client for the Topicus KeyHub Vault API',
     keywords='keyhub',
-    url='www.topicus-keyhub.com',
+    url='https://www.topicus-keyhub.com/',
     author='Marc Mast',
     author_email='connect.with.marck@gmail.com',
     license='Apache Software License 2.0',
