@@ -40,6 +40,11 @@ class KeyHubVault(object):
         response = self._session.get(group.href + "/vault/record/uuid/" + record_uuid + "?additional=secret") 
         return VaultRecord(response.json())
         
+    def post_vault_record(self, group_uuid, payload):
+        group = self.get_group(group_uuid)
+        response = self._session.post(group.href + "/vault/record?additional=secret", json=payload)
+        return response
+
     # This doesn't work
     # def post_personal_vault(self, account_uuid):
         # /keyhub/rest/v1/account/{accountid}/vault/record
