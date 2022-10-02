@@ -80,6 +80,7 @@ Basic usage:
         ]
     }
     post_vault_record = keyhub_vault.post_vault_record(group_uuid=settings['vault_uuid'], payload=payload)
+    
 ```
 
 > This repository is a cherry pick from the original authors [repo](https://github.com/topicusonderwijs/keyhub-sdk) and modified to fit some more specific needs
