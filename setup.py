@@ -83,6 +83,6 @@ Basic usage:
     
 ```
 
-> This repository is a cherry pick from the original authors [repo](https://github.com/topicusonderwijs/keyhub-sdk) and modified to fit some more specific needs
+> This repository is a cherry pick from the original authors [repo](https://github.com/topicusonderwijs/keyhub-sdk) and modified to fit some more specific needs.
 """
 )
