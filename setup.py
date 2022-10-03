@@ -17,7 +17,7 @@ from setuptools import setup
 
 setup(
     name='keyhub',
-    version='0.4.2',
+    version='0.5.0',
     keywords='keyhub',
     url='https://github.com/Marck/keyhub-python-sdk',
     author='Marc Mast',

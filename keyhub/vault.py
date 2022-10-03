@@ -12,6 +12,7 @@ class VaultRecord(object):
         self.color = json['color'] if 'color' in json else ''
         self.username = json['username'] if 'username' in json else ''
         self.url = json['url'] if 'url' in json else ''
+        self.links = json['links'][0]
         self.additionalObjects = json['additionalObjects']
         self.password = json['additionalObjects']['secret']['password'] if 'secret' in json['additionalObjects'] and 'password' in json['additionalObjects']['secret'] else ''
         self.totp = json['additionalObjects']['secret']['totp'] if 'secret' in json['additionalObjects'] and 'totp' in json['additionalObjects']['secret'] else ''
