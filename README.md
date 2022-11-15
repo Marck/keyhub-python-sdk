@@ -4,12 +4,29 @@ SDK for KeyHub written in Python
 
 Python client for the Topicus KeyHub Vault API, supported under python 3 (only tested with 3.6).
 
-Basic usage:
+## Basic usage
+
+Create a *creds.json* file with the following format:
+
+```json
+{
+    "url": "",
+    "account_username": "",
+    "vault_uuid": "",
+    "client_id": "",
+    "client_secret": ""
+}
+```
+
+Create your Python script:
 
 ```python
     import keyhub
+    import json
 
-    keyhub_client = keyhub.client(uri='<your KeyHub uri>', client_id='<KeyHub application id>', client_secret='<KeyHub application secret>')
+    settings = json.load(open('creds.json', 'r'))
+
+    keyhub_client = keyhub.client(uri=settings['url'], client_id=settings['client_id'], client_secret=settings['client_secret'])
 
     print(keyhub_client.info())
 
