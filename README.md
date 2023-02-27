@@ -41,4 +41,8 @@ Create your Python script:
     keyhub_client.get_account_record(account_username='<useraccount username>')
 ```
 
-> This repository is a cherry pick from the original authors repo: https://github.com/topicusonderwijs/keyhub-sdk and modified to fit some more specific needs
+## Examples
+
+See the _examples_ folder for some examples.
+
+> This repository is a cherry pick from the original authors repo [here](https://github.com/topicusonderwijs/keyhub-sdk) and modified to fit some more specific needs
