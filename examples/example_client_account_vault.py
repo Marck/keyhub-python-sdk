@@ -55,12 +55,14 @@ payload = {
             'secret': {
                 '$type': 'vault.VaultRecordSecrets',
                 'password': 'test2',
-                "comment": "This is an example record, nothing special"
+                "comment": "This is an example record, nothing special",
+                 "file": "V293LCBkaWQgeW91IGFjdHVhbGx5IGRlY29kZSB0aGlzPw=="
             }
         },
         'name': 'Python scripting test', 
         'username': 'test', 
         'color': 'NONE', # PINK_LAVENDER, RED, ANDROID_GREEN, DARK, NONE, BLUE, SAGE, ARTICHOKE, CRIMSON_RED, GREEN, MIDDLE_YELLOW
+        'filename': "testfile.png",
         # 'url': '',
         # 'endDate': '2023-05-25',
         # 'warningPeriod': 'ONE_MONTH' # AT_EXPIRATION, TWO_WEEKS, ONE_MONTH, TWO_MONTHS, THREE_MONTHS, SIX_MONTHS, NEVER
