@@ -1,0 +1,10 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "local>Marck/renovate-config"
+  ],
+  "description": [
+    "ignoreTests is true because this repo has no workflows. A branch with no checks resolves to yellow, so without it nothing would ever automerge."
+  ],
+  "ignoreTests": true
+}
